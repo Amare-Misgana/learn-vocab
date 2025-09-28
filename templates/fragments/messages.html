@@ -1,0 +1,14 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+<div id="django-messages" style="display:none">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="django-message" data-message="{{ message|escapejs }}" data-level="{{ message.tags }}"></div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div id="toast-container"></div>
+
+<script src="{% static 'js/messages.js' %}"></script>

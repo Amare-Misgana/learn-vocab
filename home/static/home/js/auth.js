@@ -20,6 +20,7 @@ function updateForm() {
   const toggleBtn = document.getElementById("toggleBtn");
   const emailInput = document.getElementById("email");
   const confirmPasswordInput = document.getElementById("confirmPassword");
+  const authMethodInput = document.getElementById("authMethod");
 
   if (currentMode === "login") {
     authTitle.textContent = "Welcome Back";
@@ -31,6 +32,7 @@ function updateForm() {
     toggleBtn.textContent = "Sign up here";
     emailInput.removeAttribute("required");
     confirmPasswordInput.removeAttribute("required");
+    authMethodInput.value = "login";
   } else {
     authTitle.textContent = "Join LearnVocab";
     authDescription.textContent = "Start building your vocabulary today";
@@ -41,6 +43,7 @@ function updateForm() {
     toggleBtn.textContent = "Sign in here";
     emailInput.setAttribute("required", "");
     confirmPasswordInput.setAttribute("required", "");
+    authMethodInput.value = "signup";
   }
 
   // Clear form
@@ -65,39 +68,3 @@ function togglePassword(fieldId) {
                 `;
   }
 }
-
-function showToast(message, type = "success") {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.className = `toast ${type}`;
-  toast.classList.add("show");
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3000);
-}
-
-document.getElementById("authForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const email = document.getElementById("email").value;
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-
-  if (currentMode === "signup") {
-    if (password !== confirmPassword) {
-      showToast("Passwords do not match. Please try again.", "error");
-      return;
-    }
-
-    if (password.length < 8) {
-      showToast("Password must be at least 8 characters long.", "error");
-      return;
-    }
-
-    showToast("Account created successfully! Welcome to LearnVocab!", "success");
-  } else {
-    showToast("Login successful! Welcome back to LearnVocab!", "success");
-  }
-});

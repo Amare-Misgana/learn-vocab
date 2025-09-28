@@ -48,6 +48,7 @@ body {
   background: hsla(240, 10%, 8%, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
 }
 
 .header-content {
